@@ -5,6 +5,7 @@ import { bound } from '../utils/bound'
 import { rubberbandIfOutOfBounds } from '../utils/rubberband'
 import clsx from 'clsx'
 import { createNamespace } from '../utils'
+import Lazyload from '../lazyload'
 
 type Props = {
   image: string
@@ -163,12 +164,14 @@ export const Slide: FC<Props> = props => {
             scale: zoom,
           }}
         >
-          <img
-            ref={imgRef}
-            src={props.image}
-            draggable={false}
-            alt={props.image}
-          />
+          <Lazyload>
+            <img
+              ref={imgRef}
+              src={props.image}
+              draggable={false}
+              alt={props.image}
+            />
+          </Lazyload>
         </animated.div>
       </div>
     </div>
